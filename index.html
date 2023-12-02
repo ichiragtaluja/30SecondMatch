@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-control" content="no-cache" />
     <title>30 Second Match</title>
+    <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
     <header>
@@ -13,7 +15,11 @@
           <li><a href="">Home</a></li>
           <li><a href="#about.html">About</a></li>
           <li><a href="#contact.html">Contact</a></li>
-          <li><a href="#take-test.html">Take the test</a></li>
+          <li>
+            <a class="take-test" href="#questions-section">Take the test</a>
+          </li>
+          <li id="nav-login">Login</li>
+          <li id="nav-logout">Logout</li>
         </ul>
       </nav>
     </header>
@@ -22,7 +28,7 @@
         <h1>30 Seconds Match</h1>
         <p>Some subtext</p>
         <div><img src="" alt="an image of a couple" /></div>
-        <button>Take the test</button>
+        <a class="take-test-btn" href="#questions-section">Take the test</a>
       </section>
       <section>
         <h2>Our results in numbers</h2>
@@ -79,64 +85,23 @@
           </li>
         </ul>
       </section>
-      <section>
+
+      <section id="questions-section">
+        <div class="progress-bar">
+          <div class="progress" id="progress">
+            <div id="progress-child"></div>
+          </div>
+        </div>
         <h2>Find your personality</h2>
         <p>MBTI based personality test</p>
-        <ul>
-          <li>
-            <div>
-              <p>Which vacation sounds most appealing?</p>
-              <ul>
-                <li>
-                  <img />
-                  <p>Answer1</p>
-                </li>
-                <li>
-                  <img />
-                  <p>Answer2</p>
-                </li>
-                <li>
-                  <img />
-                  <p>Answer3</p>
-                </li>
-                <li>
-                  <img />
-                  <p>Answer4</p>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li>
-            <div>
-              <p>Which vacation sounds most appealing?</p>
-              <ul>
-                <li>
-                  <img />
-                  <p>Answer1</p>
-                </li>
-                <li>
-                  <img />
-                  <p>Answer2</p>
-                </li>
-                <li>
-                  <img />
-                  <p>Answer3</p>
-                </li>
-                <li>
-                  <img />
-                  <p>Answer4</p>
-                </li>
-              </ul>
-            </div>
-          </li>
-        </ul>
-        <button>Find my type</button>
+        <ul id="questions"></ul>
+        <button id="find-type">Next</button>
       </section>
 
       <section>
         <div><img src="" alt="" /></div>
         <div>
-          <h2>You are an ENFP</h2>
+          <h2 id="type"></h2>
           <p>A person who posses........</p>
           <div>
             <button>Know more</button>
@@ -144,33 +109,36 @@
           </div>
         </div>
       </section>
-      <section>
-        <h2>Get a match</h2>
-        <div><img src="" alt="" /></div>
-        <form action=" ">
-          <label for="name">Name:</label>
-          <input name="name" type="text" /><label for="email">Email: </label
-          ><input name="email" type="email" />
-          <input type="submit" />
-        </form>
-      </section>
+
       <section id="match-section">
         <h2>Meet your matches</h2>
-        <ul>
-          <li>
-            <img src="" alt="" />
-            <h3>Wanda</h3>
-            <p>ENFP</p>
-            <p>"Adventure-seeker with a love for spontanious road trips"</p>
-          </li>
-          <li>
-            <img src="" alt="" />
-            <h3>Wanda</h3>
-            <p>ENFP</p>
-            <p>"Adventure-seeker with a love for spontanious road trips"</p>
-          </li>
-        </ul>
+        <ul id="matches"></ul>
       </section>
+      <section id="sign-up-section">
+        <form id="signup">
+          <h2>Sign-up</h2>
+          <label for="name">Name:</label><input type="text" name="name" />
+          <label for="dob">Date of birth:</label
+          ><input type="date" name="dob" /> <label for="email">Email:</label
+          ><input type="email" name="email" />
+          <label for="password">Password:</label
+          ><input type="password" name="password" />
+          <input type="submit" , value="Sign up" />
+        </form>
+      </section>
+
+      <section id="login-section">
+        <form id="login">
+          <h2>Login</h2>
+          <label for="email">Email:</label><input type="email" name="email" />
+          <label for="password">Password:</label
+          ><input type="password" name="password" />
+          <input type="submit" , value="Login" />
+        </form>
+        <p>Dont have an account?</p>
+        <button id="go-to-signup">Signup here</button>
+      </section>
+
       <section>
         <h2>Connect with us now</h2>
         <form>
@@ -187,5 +155,6 @@
       </section>
     </main>
     <footer>Copyright 2023 Page not found | All rights reserved</footer>
+    <script src="js/script.js"></script>
   </body>
 </html>

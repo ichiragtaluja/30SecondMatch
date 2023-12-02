@@ -1,0 +1,75 @@
+.email {
+  display: none;
+}
+
+#signup {
+  display: none;
+}
+
+#login {
+  display: none;
+}
+
+#match-section {
+  display: none;
+}
+
+.options {
+  display: none;
+}
+
+#login-section {
+}
+
+#sign-up-section {
+}
+
+.active {
+  display: block;
+}
+
+#questions-section {
+  display: none;
+}
+
+.question-heading {
+  display: none;
+}
+
+.progress-bar {
+  border: 1px solid black;
+  border-radius: 1em;
+  width: 500px;
+  height: 10px;
+  overflow: hidden;
+}
+
+.progress {
+  width: 1%;
+  height: 100%;
+
+  /* transition-property: width;
+  transition-duration: 1s; */
+}
+
+#progress-child {
+  background-color: yellow;
+  background-image: linear-gradient(to right, red, #ffb378);
+  width: 100%;
+  height: 100%;
+  animation-duration: 1.5s;
+  animation-name: progressbar;
+}
+
+@keyframes progressbar {
+  from {
+    width: 70%;
+  }
+  25% {
+    width: 110%;
+  }
+
+  to {
+    width: 100%;
+  }
+}
