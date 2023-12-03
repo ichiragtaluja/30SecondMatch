@@ -168,6 +168,12 @@ window.onload = function () {
   xhrQuestions.send();
 };
 function displayType(data) {
+  document.querySelector("#results-section").style.display = "block";
+
+  document
+    .querySelector("#results-section")
+    .scrollIntoView({ behavior: "smooth", block: "start" });
+
   let h2 = document.querySelector("#type");
   h2.innerHTML = `You are an ${data[0].type}`;
 
@@ -176,6 +182,7 @@ function displayType(data) {
     if (xhr.readyState === XMLHttpRequest.DONE) {
       if (xhr.status == 200) {
         let data = JSON.parse(xhr.responseText);
+        console.log(data);
         isLoggedIn = data;
         console.log(isLoggedIn);
       }
@@ -191,15 +198,15 @@ function revealEmail(index) {
     document.querySelector(`#email-${index + 1}`).style.display = "block";
     document.querySelector(`#email-btn-${index + 1}`).style.display = "none";
   } else {
-    // console.log("sign up page");
-    // signupform.style.display = "block";
-    // signupform.emailIndex = index;
-
     console.log("sign up page");
     loginform.style.display = "block";
+
+    document.querySelector("#login-section").style.display = "block";
     loginform.emailIndex = index;
 
-    console.log();
+    document
+      .querySelector("#login-section")
+      .scrollIntoView({ behavior: "smooth", block: "center" });
   }
 }
 
@@ -261,6 +268,10 @@ function handleFindType() {
                   displayMatch(data);
                   document.querySelector("#match-section").style.display =
                     "block";
+
+                  document
+                    .querySelector("#match-section")
+                    .scrollIntoView({ behavior: "smooth", block: "nearest" });
                 }
               }
             };
@@ -316,8 +327,9 @@ function signupHandler(e, i) {
         console.log(responseJSON);
         if (responseJSON.success == "true") {
           isLoggedIn = true;
+          console.log("isloggedin", isLoggedIn);
           updateNavbar();
-          document.querySelector("#sign-up-section").remove();
+          document.querySelector("#sign-up-section").style.display = "none";
           if (i >= 0) {
             revealEmail(i);
           }
@@ -354,7 +366,7 @@ function loginHandler(e, i) {
 
         isLoggedIn = true;
         updateNavbar();
-        document.querySelector("#login-section").remove();
+        document.querySelector("#login-section").style.display = "none";
         if (i >= 0) {
           revealEmail(i);
         }
@@ -380,13 +392,18 @@ loginform.addEventListener("submit", (e) =>
 
 document.querySelector("#go-to-signup").addEventListener("click", () => {
   signupform.emailIndex = loginform.emailIndex;
-  document.querySelector("#login-section").remove();
+  document.querySelector("#login-section").style.display = "none";
   signupform.style.display = "block";
+
+  document
+    .querySelector("#sign-up-section")
+    .scrollIntoView({ behavior: "smooth", block: "center" });
 });
 
 let loginBtn = document.querySelector("#nav-login");
 loginBtn.addEventListener("click", () => {
   loginform.style.display = "block";
+  document.querySelector("#login-section").style.display = "block";
 });
 let logoutBtn = document.querySelector("#nav-logout");
 logoutBtn.addEventListener("click", () => {

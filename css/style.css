@@ -1,3 +1,9 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
 .email {
   display: none;
 }
@@ -19,6 +25,7 @@
 }
 
 #login-section {
+  display: none;
 }
 
 #sign-up-section {
@@ -27,21 +34,55 @@
 .active {
   display: block;
 }
-
+/* question-section */
 #questions-section {
+  display: none;
+  padding: 1rem;
+}
+#questions-section #questions {
+  padding: 1rem 0;
+}
+
+#questions-section #questions li ul {
+  list-style-type: none;
+}
+
+#questions-section #questions li ul,
+#questions-section #questions li h2 {
+  display: none;
+}
+#questions-section #questions li:has(h2:not(.active)) {
   display: none;
 }
 
-.question-heading {
-  display: none;
+#questions-section #questions li ul.active,
+#questions-section #questions li h2.active {
+  display: block;
+}
+
+#questions-section #questions li:has(h2.active),
+#questions-section #questions li:has(ul.active) {
+  display: block;
+}
+
+#questions-section #questions ul li {
+  padding: 0.5rem 0;
+}
+
+#questions-section #questions ul li img {
+  display: block;
+}
+#questions-section #questions li ul li label {
+  padding-left: 1rem;
 }
 
 .progress-bar {
   border: 1px solid black;
   border-radius: 1em;
-  width: 500px;
-  height: 10px;
+  width: 80vw;
+  height: 15px;
   overflow: hidden;
+  margin: 1em;
 }
 
 .progress {
@@ -54,11 +95,12 @@
 
 #progress-child {
   background-color: yellow;
-  background-image: linear-gradient(to right, red, #ffb378);
+  background-image: linear-gradient(to right, rgb(200, 255, 112), #36bd00);
   width: 100%;
   height: 100%;
   animation-duration: 1.5s;
   animation-name: progressbar;
+  padding: 1rem;
 }
 
 @keyframes progressbar {
@@ -72,4 +114,122 @@
   to {
     width: 100%;
   }
+}
+
+/* navbar */
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 1px solid black;
+  padding: 1rem;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
+nav ul {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+}
+
+nav ul li {
+  margin: 0 0.5rem;
+}
+
+/* numbers section */
+#numbers-section {
+  border: 1px solid black;
+  padding: 1rem;
+}
+
+#numbers-section #numbers {
+  display: flex;
+  list-style-type: none;
+  justify-content: space-evenly;
+}
+/* hero section */
+#hero-section {
+  border: 1px solid black;
+  padding: 1rem;
+  margin-top: 3rem;
+}
+/* reviews section */
+#reviews-section {
+  border: 1px solid black;
+  padding: 1rem;
+}
+
+/* results section */
+#results-section {
+  display: none;
+}
+
+#reviews-section ul {
+  display: flex;
+  border: 1px solid black;
+
+  list-style-type: none;
+}
+#reviews-section ul li {
+  padding-right: 1rem;
+}
+
+/* match-section */
+#match-section ul {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  flex-wrap: wrap;
+}
+#match-section ul li {
+  padding: 1rem;
+}
+
+/* contact-form */
+
+#contact-form {
+  padding: 1rem;
+}
+
+#contact-form input,
+#contact-form textarea {
+  display: block;
+}
+
+/* signup section */
+
+#sign-up-section {
+  padding: 1rem;
+}
+#sign-up-section input {
+  display: block;
+  margin: 0.5rem 0;
+}
+
+/* login section */
+
+#login-section {
+  padding: 1rem;
+}
+#login-section input {
+  display: block;
+  margin: 0.5rem 0;
+}
+
+body {
+  border: 1px solid red;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  border: 1px solid blue;
+  flex-grow: 1;
+}
+footer {
+  padding: 1rem;
+  position: sticky;
+  bottom: 0;
 }

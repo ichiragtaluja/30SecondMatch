@@ -7,6 +7,8 @@ $password = $_POST["password"];
 $personality = $_POST["personality"];
 $image = NULL;
 
+$_SESSION["isLoggedIn"] = false;
+
 
 $dob = new DateTime($DOB);
 $today = new DateTime();
@@ -27,8 +29,8 @@ $stmt->execute();
 
 if ($success) {
     echo '{"success": "true"}';
-    // $_SESSION["isLoggedIn"] = true;
+    $_SESSION["isLoggedIn"] = true;
 } else {
     echo '{"success": "false"}';
-    // $_SESSION["isLoggedIn"] = false;
+    $_SESSION["isLoggedIn"] = false;
 }
