@@ -1,4 +1,7 @@
-<?php session_start();
+<?php
+session_start();
+
+$_SESSION["isLoggedIn"];
 
 if (!isset($_SESSION['isLoggedIn'])) {
     $_SESSION["isLoggedIn"] = false;

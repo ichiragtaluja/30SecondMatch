@@ -6,19 +6,25 @@
     <meta http-equiv="Cache-control" content="no-cache" />
     <title>30 Second Match</title>
     <link rel="stylesheet" href="./css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;700&family=Happy+Monkey&family=Inter:wght@400;500;700&family=Jost&family=Karla:wght@400;500;700&family=Lato:wght@400;900&family=Montserrat:wght@400;700&family=Open+Sans&family=Orbitron:wght@400;700&family=Poppins:wght@400;700&family=Roboto:wght@100;400;900&family=Sofia+Sans+Condensed:ital,wght@1,100&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header>
       <nav>
-        <div><a href="#">Logo</a></div>
+        <div id="logo"><a href="#">30 Seconds Match</a></div>
         <ul>
-          <li><a href="">Home</a></li>
-          <li><a href="#about.html">About</a></li>
-          <li><a href="#contact.html">Contact</a></li>
+          <li><a href="#hero-section">Home</a></li>
+          <li><a href="#hero-section">About</a></li>
+          <li><a href="#contact-form">Contact</a></li>
           <li>
             <a class="take-test" href="#questions-section">Take the test</a>
           </li>
-          <li id="nav-login">Login</li>
+          <li id="nav-login"><a href="#login-section">Login</a></li>
           <li id="nav-logout">Logout</li>
         </ul>
       </nav>
@@ -26,40 +32,41 @@
     <main>
       <section id="hero-section">
         <h1>30 Seconds Match</h1>
-        <p>Some subtext</p>
-        <div><img src="" alt="an image of a couple" /></div>
-        <a class="take-test-btn" href="#questions-section">Take the test</a>
+        <p class="typed">Find instant matches based on your personality!</p>
+        <a class="take-test-btn primary-btn" href="#questions-section"
+          >Take the test</a
+        >
       </section>
 
       <section id="view-questions-section">
-        <a>View all questions</a>
+        <a id="view-questions-link">View all questions</a>
         <ul id="view-questions"></ul>
       </section>
       <section id="numbers-section">
-        <h2>Our results in numbers</h2>
-        <p>Our numbers reflect......</p>
+        <h2>Our Results in Numbers</h2>
+        <!-- <p>Our numbers reflect</p> -->
         <ul id="numbers">
           <li>
             <div>
-              <h3>92%</h3>
+              <h3>92<small>%</small></h3>
               <p>User Satisfaction</p>
             </div>
           </li>
           <li>
             <div>
-              <h3>32K</h3>
+              <h3>32<small>K</small></h3>
               <p>Active users</p>
             </div>
           </li>
           <li>
             <div>
-              <h3>125+</h3>
+              <h3>125<small>+</small></h3>
               <p>Matches/min</p>
             </div>
           </li>
           <li>
             <div>
-              <h3>240%</h3>
+              <h3>240<small>%</small></h3>
               <p>Company growth</p>
             </div>
           </li>
@@ -67,50 +74,54 @@
       </section>
 
       <section id="reviews-section">
-        <h2>What our users say</h2>
-        <p>Discover........</p>
+        <h2>What Our Users Say</h2>
         <ul>
           <li>
             <div>
-              <img />
+              <img
+                src="https://media-www.sheridancollege.ca/-/media/feature/sheridan/faculty180/profiles/andrew-smyk.jpeg?rev=3221164af9c149f89abd5af6d9854a75&extension=webp&w=480&hash=156F2C30A5414AFA408620289C9D0F11"
+              />
               <h4>An amazing service</h4>
-              <p>I've never experienced......</p>
-              <p>Andrew</p>
-              <p>All round pirate</p>
+              <i>I've never experienced......</i>
+              <b>-Andrew</b>
+              <p>ESTP</p>
             </div>
           </li>
           <li>
             <div>
-              <img />
+              <img
+                src="https://pbs.twimg.com/profile_images/647963895148089344/Ys6Sh_kB_400x400.jpg"
+              />
               <h4>An amazing service</h4>
-              <p>I've never experienced......</p>
-              <p>Andrew</p>
-              <p>All round pirate</p>
+              <i>I've never experienced......</i>
+              <b>-Wasim</b>
+              <p>INTJ</p>
             </div>
           </li>
         </ul>
       </section>
 
       <section id="questions-section">
+        <h2 class="test-header">Find Your Personality</h2>
+        <p class="test-header">MBTI based personality test</p>
         <div class="progress-bar">
           <div class="progress" id="progress">
             <div id="progress-child"></div>
           </div>
         </div>
-        <h2>Find your personality</h2>
-        <p>MBTI based personality test</p>
-        <ul id="questions"></ul>
-        <button id="find-type">Next</button>
+        <form><ul id="questions"></ul></form>
+
+        <button class="primary-btn" id="find-type">Next</button>
       </section>
 
       <section id="results-section">
-        <div><img src="" alt="" /></div>
+        <!-- <div><img src="" alt="" /></div> -->
         <div>
           <h2 id="type"></h2>
           <p>A person who posses........</p>
           <div>
-            <button>Know more</button>
-            <button>Share result</button>
+            <button class="secondary-btn">Know more</button>
+            <button class="secondary-btn">Share result</button>
           </div>
         </div>
       </section>
@@ -124,11 +135,11 @@
           <h2>Sign-up</h2>
           <label for="name">Name:</label><input type="text" name="name" />
           <label for="dob">Date of birth:</label
-          ><input type="date" name="dob" /> <label for="email">Email:</label
-          ><input type="email" name="email" />
+          ><input placeholder="none" type="date" name="dob" />
+          <label for="email">Email:</label><input type="email" name="email" />
           <label for="password">Password:</label
           ><input type="password" name="password" />
-          <input type="submit" , value="Sign up" />
+          <input class="primary-btn" type="submit" , value="Sign up" />
         </form>
       </section>
 
@@ -138,10 +149,10 @@
           <label for="email">Email:</label><input type="email" name="email" />
           <label for="password">Password:</label
           ><input type="password" name="password" />
-          <input type="submit" , value="Login" />
+          <input class="primary-btn" type="submit" , value="Login" />
         </form>
         <p>Dont have an account?</p>
-        <button id="go-to-signup">Signup here</button>
+        <button class="secondary-btn" id="go-to-signup">Signup here</button>
       </section>
 
       <section id="contact-form">
@@ -151,11 +162,10 @@
           <input name="name" type="text" />
           <label for="email">Email</label>
           <input name="email" type="text" />
-          <label for="number">Phone</label>
-          <input name="number" type="number" />
+
           <label for="message">Leave us message</label>
           <textarea name="message" id="" cols="30" rows="10"></textarea>
-          <input type="submit" />
+          <input class="secondary-btn" type="submit" />
         </form>
       </section>
     </main>

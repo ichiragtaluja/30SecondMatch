@@ -2,6 +2,12 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  --primary-color: rgb(255, 134, 193);
+}
+body {
+  font-size: 16px;
+  font-family: "roboto", "sans-serif";
+  line-height: 1.5em;
 }
 
 .email {
@@ -28,10 +34,30 @@
   display: none;
 }
 
+#find-type {
+  margin-left: 2rem;
+  margin-top: -3rem;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+}
+
 #sign-up-section {
 }
 
-.active {
+.test-header {
+  text-align: center;
+}
+h2.test-header {
+  font-size: 2.5rem;
+  padding: 2rem 1rem 1rem 1rem;
+  line-height: 2.5rem;
+}
+
+p.test-header {
+  color: grey;
+}
+
+#questions-section .active {
   display: block;
 }
 /* question-section */
@@ -40,11 +66,14 @@
   padding: 1rem;
 }
 #questions-section #questions {
-  padding: 1rem 0;
+  padding: 0.5rem 2rem 2rem 2rem;
 }
 
 #questions-section #questions li ul {
   list-style-type: none;
+}
+#questions-section .question-heading {
+  padding: 1rem 0;
 }
 
 #questions-section #questions li ul,
@@ -66,21 +95,30 @@
 }
 
 #questions-section #questions ul li {
-  padding: 0.5rem 0;
+  padding: 1rem 0;
 }
 
 #questions-section #questions ul li img {
   display: block;
+  width: 50vw;
+  height: 35vw;
+  margin-bottom: 0.5rem;
+  border-radius: 1rem;
+  object-fit: cover;
+  object-position: top;
 }
+
 #questions-section #questions li ul li label {
-  padding-left: 1rem;
+  padding-left: 0.5rem;
+  font-weight: 400;
+  color: grey;
 }
 
 .progress-bar {
-  border: 1px solid black;
+  border: 1.5px solid rgb(235, 235, 235);
   border-radius: 1em;
   width: 80vw;
-  height: 15px;
+  height: 20px;
   overflow: hidden;
   margin: 1em;
 }
@@ -88,14 +126,15 @@
 .progress {
   width: 1%;
   height: 100%;
-
-  /* transition-property: width;
-  transition-duration: 1s; */
 }
 
 #progress-child {
   background-color: yellow;
-  background-image: linear-gradient(to right, rgb(200, 255, 112), #36bd00);
+  background-image: linear-gradient(
+    to right,
+    rgb(255, 205, 229),
+    var(--primary-color)
+  );
   width: 100%;
   height: 100%;
   animation-duration: 1.5s;
@@ -117,7 +156,6 @@
 }
 
 /* navbar */
-
 nav {
   display: flex;
   flex-direction: row;
@@ -127,21 +165,60 @@ nav {
   position: fixed;
   top: 0;
   width: 100vw;
+  background-color: black;
 }
+#logo {
+  padding-left: 1rem;
+  font-weight: 800;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+}
+
+nav a:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
 nav ul {
   display: flex;
   flex-direction: row;
   list-style-type: none;
+  color: white;
 }
 
 nav ul li {
   margin: 0 0.5rem;
 }
 
-/* numbers section */
 #numbers-section {
-  border: 1px solid black;
   padding: 1rem;
+  background-color: rgb(255, 247, 250);
+  border-radius: 1rem;
+  margin: 1rem;
+  text-align: center;
+}
+
+#numbers-section h2 {
+  font-size: 2rem;
+  line-height: 2rem;
+  padding: 2rem;
+}
+
+#numbers-section li p {
+  color: rgb(155, 155, 155);
+  line-height: 1.3em;
+}
+#numbers-section li h3 {
+  font-size: 1.7rem;
+  margin-bottom: 0.5rem;
+}
+
+#numbers-section small {
+  color: var(--primary-color);
+  padding: 0.1rem;
 }
 
 #numbers-section #numbers {
@@ -149,73 +226,357 @@ nav ul li {
   list-style-type: none;
   justify-content: space-evenly;
 }
+
+#numbers-section ul {
+  padding: 1rem;
+}
 /* hero section */
 #hero-section {
-  border: 1px solid black;
   padding: 1rem;
   margin-top: 3rem;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.85)),
+    url("https://media.giphy.com/media/2qCnzpnAGK9KiBmyA1/giphy.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  place-items: center;
+}
+
+#hero-section h1 {
+  font-size: 4rem;
+  text-align: center;
+  line-height: 1;
+}
+#hero-section p {
+  color: rgb(163, 163, 163);
+  margin-top: -10rem;
+  font-size: 1.2rem;
+  height: 50px;
+  justify-self: center;
+  display: grid;
+  text-align: center;
+  align-items: center;
+  width: 50vw;
+}
+
+#hero-section a {
+  background-color: transparent;
+}
+
+#hero-section a:hover {
+  border: 1px solid rgb(255, 255, 255);
+}
+
+.typed {
+  justify-self: center;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid grey;
+  width: 0;
+  animation: typing 3s steps(30, end) forwards, blinking 1s infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blinking {
+  0% {
+    border-color: transparent;
+  }
+  50% {
+    border-color: grey;
+  }
+  100% {
+    border-color: transparent;
+  }
 }
 /* reviews section */
 #reviews-section {
-  border: 1px solid black;
-  padding: 1rem;
+  padding: 2rem;
+  background-color: rgb(245, 245, 245);
+  border-radius: 1rem;
+  margin: 1rem;
+  text-align: center;
 }
 
-/* results section */
-#results-section {
-  display: none;
+#reviews-section h2 {
+  padding: 1rem;
+  font-size: 2rem;
+  line-height: 2rem;
+  margin-bottom: 2rem;
 }
 
 #reviews-section ul {
   display: flex;
-  border: 1px solid black;
-
+  /* border: 1px solid black; */
   list-style-type: none;
+  justify-content: center;
 }
 #reviews-section ul li {
   padding-right: 1rem;
+  text-align: left;
+}
+
+#reviews-section ul i {
+  color: grey;
+}
+#reviews-section ul b {
+  display: block;
+  margin-top: 0.5rem;
+}
+#reviews-section ul p {
+  display: block;
+  color: grey;
+}
+#reviews-section ul img {
+  border-radius: 5rem;
+  width: 6rem;
+  height: 6rem;
+  object-fit: cover;
+  border: 3px solid white;
+}
+
+/* result-section */
+#results-section {
+  display: none;
+  background-color: rgb(255, 247, 250);
+  margin: 1rem;
+  padding: 2rem;
+  border-radius: 1rem;
+  text-align: center;
+}
+#results-section h2 {
+  font-size: 2.5rem;
+  padding: 1rem;
+  padding-bottom: 2rem;
+  line-height: 2.5rem;
+}
+#results-section p {
+  color: rgb(156, 156, 156);
+  margin-top: -1rem;
+}
+
+#results-section button {
+  margin: 0.3rem;
+  font-size: 1rem;
+}
+
+#results-section button:first-child {
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  color: white;
+}
+
+#results-section button:first-child:hover {
+  background-color: rgb(255, 109, 179);
 }
 
 /* match-section */
+
+#match-section {
+  text-align: center;
+  padding: 1rem;
+  margin: 2rem;
+  border-radius: 1rem;
+}
+
+#match-section > h2 {
+  font-size: 4rem;
+  line-height: 4rem;
+  padding-bottom: 1rem;
+}
 #match-section ul {
   display: flex;
   flex-direction: row;
   list-style-type: none;
   flex-wrap: wrap;
+  justify-content: center;
 }
 #match-section ul li {
   padding: 1rem;
+}
+#match-section ul li button {
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+#match-section ul li img {
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+
+#match-section ul li p:first-of-type {
+  color: rgb(166, 166, 166);
+}
+#match-section ul li p:nth-of-type(2) {
+  font-style: italic;
+  font-size: 0.8rem;
+  color: rgb(166, 166, 166);
 }
 
 /* contact-form */
 
 #contact-form {
+  padding: 2rem;
+  background-color: rgb(255, 247, 250);
+  margin: 1rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  /* text-align: center; */
+}
+#contact-form h2 {
+  font-size: 2rem;
   padding: 1rem;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
-#contact-form input,
+#contact-form input[type="text"],
+#contact-form input[type="number"],
 #contact-form textarea {
   display: block;
+  border: 1px solid rgb(231, 231, 231);
+  border-radius: 2rem;
+  height: 2.5rem;
+  margin-bottom: 1rem;
+  width: 50vw;
+  padding: 0 1rem;
+}
+
+#contact-form textarea {
+  padding: 0.6rem 1rem;
+}
+
+#contact-form form label {
+  color: rgb(0, 0, 0);
+  font-weight: 350;
+}
+
+#contact-form input[type="submit"] {
+  margin-top: 0.5rem;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
 }
 
 /* signup section */
-
 #sign-up-section {
+  padding: 2rem;
+  background-color: rgb(245, 245, 245);
+  margin: 1rem;
+  border-radius: 1rem;
+  display: none;
+}
+#sign-up-section input {
+  display: block;
+  margin: 0.5rem 0;
+}
+#sign-up-section form label {
+  color: rgb(0, 0, 0);
+  font-weight: 350;
+}
+
+#sign-up-section form > h2 {
+  text-align: center;
   padding: 1rem;
+  font-size: 2rem;
+}
+
+#sign-up-section input[type="submit"] {
+  margin-top: 1rem;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
 }
 #sign-up-section input {
   display: block;
   margin: 0.5rem 0;
 }
 
+#sign-up-section input[type="text"],
+#sign-up-section input[type="date"],
+#sign-up-section input[type="email"],
+#sign-up-section input[type="password"],
+#sign-up-form textarea {
+  display: block;
+  border: 1px solid rgb(231, 231, 231);
+  border-radius: 2rem;
+  height: 2.5rem;
+  margin-bottom: 1rem;
+  width: 50vw;
+  padding: 0 1rem;
+}
+
+input[type="date"]:in-range::-webkit-datetime-edit-year-field,
+input[type="date"]:in-range::-webkit-datetime-edit-month-field,
+input[type="date"]:in-range::-webkit-datetime-edit-day-field,
+input[type="date"]:in-range::-webkit-datetime-edit-text {
+  color: transparent;
+}
+
+#sign-up-section input[type="date"]:required:invalid::-webkit-datetime-edit {
+  color: transparent;
+}
+
 /* login section */
 
 #login-section {
+  padding: 2rem;
+  background-color: rgb(245, 245, 245);
+  margin: 1rem;
+  border-radius: 1rem;
+}
+#login-section form label {
+  color: rgb(0, 0, 0);
+  font-weight: 350;
+}
+
+#login-section form > h2 {
+  text-align: center;
   padding: 1rem;
+  font-size: 2rem;
+}
+
+#login-section input[type="submit"] {
+  margin-top: 1rem;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
 }
 #login-section input {
   display: block;
   margin: 0.5rem 0;
+}
+
+#go-to-signup {
+  margin-top: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+}
+
+#login-section input[type="email"],
+#login-section input[type="password"],
+#login-form textarea {
+  display: block;
+  border: 1px solid rgb(231, 231, 231);
+  border-radius: 2rem;
+  height: 2.5rem;
+  margin-bottom: 1rem;
+  width: 50vw;
+  padding: 0 1rem;
 }
 
 body {
@@ -232,4 +593,144 @@ footer {
   padding: 1rem;
   position: sticky;
   bottom: 0;
+  background-color: rgb(0, 0, 0);
+  color: rgb(100, 100, 100);
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+/* administrator */
+
+#view-questions-section {
+  padding: 2rem;
+  margin: 1rem;
+  background-color: rgb(245, 245, 245);
+  display: none;
+}
+
+#view-questions-link {
+  font-size: 2rem;
+  font-weight: 600;
+  display: block;
+  /* padding-bottom: 4rem; */
+}
+
+#view-questions-section #view-questions > li ul > li {
+  margin-bottom: 1rem;
+}
+
+#view-questions-section #view-questions ul {
+  list-style-type: none;
+  margin-top: 2rem;
+}
+#view-questions-section #view-questions > li {
+  margin-bottom: 4rem;
+}
+#view-questions-section #view-questions > li h2 {
+  margin-bottom: 1rem;
+}
+#view-questions-section #view-questions button {
+  margin-right: 0.8rem;
+  font-size: 1rem;
+  padding: 0.8rem 2rem;
+  margin-top: 1rem;
+}
+
+#view-questions-section #view-questions ul li img {
+  display: block;
+  width: 150px;
+  border-radius: 1rem;
+  margin-bottom: 0.5rem;
+}
+#view-questions-section #view-questions ul li label {
+  margin-bottom: 7rem;
+}
+#view-questions-section #view-questions ul li input {
+  margin-right: 0.5rem;
+}
+
+#view-questions {
+  list-style-type: none;
+  margin-top: 3rem;
+  display: none;
+}
+
+/* buttons */
+.primary-btn {
+  background-color: var(--primary-color);
+  padding: 1.2rem 3rem;
+  color: rgb(234, 234, 234);
+  border-radius: 2.5rem;
+  text-decoration: none;
+  font-size: 1.3rem;
+  border: 1px solid var(--primary-color);
+  box-shadow: 0px 0px 34px 3px rgb(255, 134, 193, 0.3);
+}
+
+.primary-btn:hover {
+  /* border: 1px solid white; */
+  /* box-shadow: 0px 0px 34px 3px rgb(255, 134, 193, 0.5); */
+  background-color: rgb(255, 121, 186);
+}
+
+.secondary-btn {
+  background-color: transparent;
+  padding: 0.8rem 2rem;
+  color: rgb(130, 130, 130);
+  border-radius: 2.5rem;
+  text-decoration: none;
+  font-size: 1.3rem;
+  border: 1px solid rgb(205, 205, 205);
+}
+
+.secondary-btn:hover {
+  border: 1px solid var(--primary-color);
+}
+
+@media (min-width: 768px) {
+  body {
+    font-size: 16px;
+    font-family: "roboto", "sans-serif";
+    line-height: 1.5em;
+  }
+
+  #hero-section {
+    padding: 6rem;
+    margin-top: 3rem;
+    background-size: cover;
+    color: white;
+    height: 100vh;
+  }
+
+  #hero-section h1 {
+    font-size: 6rem;
+    text-align: center;
+    line-height: 1;
+  }
+  #hero-section p {
+    font-size: 1.5rem;
+    height: 50px;
+    width: 50vw;
+    margin-top: -5rem;
+  }
+  #results-section h2 {
+    font-size: 4rem;
+  }
+
+  #questions-section #questions ul li img {
+    display: block;
+    width: 250px;
+    height: 150px;
+    margin-bottom: 0.5rem;
+    border-radius: 1rem;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  #match-section ul li img {
+    width: 250px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 1rem;
+  }
 }

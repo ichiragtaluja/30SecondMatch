@@ -1,5 +1,6 @@
 console.log("connected");
 let answers = [];
+let isDeleted = false;
 
 function makeCombination() {
   let userCombination = "";
@@ -82,6 +83,9 @@ function displayQuestions(questions) {
       input.type = "radio";
       input.id = `question${question["question-id"]}answer${i + 1}`;
       let img = document.createElement("img");
+      if (i == 0) {
+        input.setAttribute("required", "required");
+      }
 
       img.src = question[`option${i + 1}-image`];
       img.alt = question[`option${i + 1}`];
@@ -109,6 +113,7 @@ function displayQuestions(questions) {
 }
 
 let isLoggedIn = false;
+let role;
 
 function showNextQuestion() {
   if (currQuestion > totalQuestions - 1) {
@@ -150,7 +155,7 @@ function showNextQuestion() {
   }
 }
 
-window.onload = function () {
+function getQuestions(displayQuestionsFn) {
   updateNavbar();
 
   let xhrQuestions = new XMLHttpRequest();
@@ -159,14 +164,19 @@ window.onload = function () {
       if (xhrQuestions.status == 200) {
         let data = JSON.parse(xhrQuestions.responseText);
         totalQuestions = data.length;
-        displayQuestions(data);
+        displayQuestionsFn(data);
       }
     }
   };
 
   xhrQuestions.open("GET", "php/get-questions.php", true);
   xhrQuestions.send();
+}
+
+window.onload = function () {
+  getQuestions(displayQuestions);
 };
+
 function displayType(data) {
   document.querySelector("#results-section").style.display = "block";
 
@@ -182,7 +192,7 @@ function displayType(data) {
     if (xhr.readyState === XMLHttpRequest.DONE) {
       if (xhr.status == 200) {
         let data = JSON.parse(xhr.responseText);
-        console.log(data);
+        console.log("data", data);
         isLoggedIn = data;
         console.log(isLoggedIn);
       }
@@ -221,6 +231,7 @@ function displayMatch(data) {
     let age = document.createElement("p");
     let email = document.createElement("p");
     let showEmailBtn = document.createElement(`button`);
+    showEmailBtn.setAttribute("class", "primary-btn");
 
     showEmailBtn.addEventListener("click", () => revealEmail(i));
 
@@ -363,9 +374,16 @@ function loginHandler(e, i) {
         console.log("inside hereeeee");
         let responseJSON = JSON.parse(req.responseText);
         console.log(responseJSON);
+        role = responseJSON[0].role;
 
         isLoggedIn = true;
         updateNavbar();
+
+        if (isLoggedIn && role == "admin") {
+          document.querySelector("#view-questions-section").style.display =
+            "block";
+        }
+
         document.querySelector("#login-section").style.display = "none";
         if (i >= 0) {
           revealEmail(i);
@@ -394,6 +412,7 @@ document.querySelector("#go-to-signup").addEventListener("click", () => {
   signupform.emailIndex = loginform.emailIndex;
   document.querySelector("#login-section").style.display = "none";
   signupform.style.display = "block";
+  document.querySelector("#sign-up-section").style.display = "block";
 
   document
     .querySelector("#sign-up-section")
@@ -413,6 +432,7 @@ logoutBtn.addEventListener("click", () => {
       if (xhr.status == 200) {
         isLoggedIn = false;
         updateNavbar();
+        window.location.reload();
       }
     }
   };
@@ -421,6 +441,8 @@ logoutBtn.addEventListener("click", () => {
 });
 
 function updateNavbar() {
+  let loginBtn = document.querySelector("#nav-login");
+  let logoutBtn = document.querySelector("#nav-logout");
   if (!isLoggedIn) {
     loginBtn.style.display = "inline";
     logoutBtn.style.display = "none";
@@ -437,3 +459,108 @@ document.querySelector(".take-test").addEventListener("click", () => {
 document.querySelector(".take-test-btn").addEventListener("click", () => {
   document.querySelector("#questions-section").style.display = "block";
 });
+
+//administrator
+document.querySelector("#view-questions-link").addEventListener("click", () => {
+  updateNavbar();
+  let xhrQuestions = new XMLHttpRequest();
+  xhrQuestions.onreadystatechange = function () {
+    if (xhrQuestions.readyState === XMLHttpRequest.DONE) {
+      if (xhrQuestions.status == 200) {
+        document.querySelector("#view-questions").style.display = "block";
+        let data = JSON.parse(xhrQuestions.responseText);
+        totalQuestions = data.length;
+        viewQuestions(data);
+      }
+    }
+  };
+
+  xhrQuestions.open("GET", "php/get-questions.php", true);
+  xhrQuestions.send();
+});
+
+function viewQuestions(questions) {
+  let questionUl = document.querySelector("#view-questions");
+  let questionIndex = 0;
+  questions.forEach(function (question) {
+    console.log(question);
+    question.answered = false;
+
+    let listquestion = document.createElement("li");
+    let div = document.createElement("div");
+    let h2 = document.createElement("h2");
+    let ul = document.createElement("ul");
+    let addBtn = document.createElement("button");
+    let editBtn = document.createElement("button");
+    let deleteBtn = document.createElement("button");
+    addBtn.classList.add("secondary-btn");
+    editBtn.classList.add("secondary-btn");
+    deleteBtn.classList.add("secondary-btn");
+
+    deleteBtn.textContent = "Delete";
+    addBtn.textContent = "Add";
+    editBtn.textContent = "Edit";
+    deleteBtn.addEventListener("click", () => {
+      let xhrQuestions = new XMLHttpRequest();
+      xhrQuestions.onreadystatechange = function () {
+        if (xhrQuestions.readyState === XMLHttpRequest.DONE) {
+          if (xhrQuestions.status == 200) {
+            console.log("hereee");
+
+            let data = JSON.parse(xhrQuestions.responseText);
+            console.log(data);
+            window.location.reload();
+          } else {
+            console.log("theree", question["question-id"]);
+          }
+        }
+      };
+      xhrQuestions.open(
+        "GET",
+        `php/delete-question.php?question-id=${question["question-id"]}`,
+        true
+      );
+      xhrQuestions.send();
+    });
+
+    // window.onload = function () {
+    //   document.querySelector("#view-questions-link").click();
+    // };
+
+    for (let i = 0; i < 2; i++) {
+      let option = document.createElement("li");
+      let label = document.createElement("label");
+      label.textContent = question[`option${i + 1}`];
+      label.setAttribute("for", question["question-id"]);
+
+      let input = document.createElement("input");
+      input.name = question["question-id"];
+      input.type = "radio";
+      let img = document.createElement("img");
+
+      img.src = question[`option${i + 1}-image`];
+      img.alt = question[`option${i + 1}`];
+      label.appendChild(input);
+      option.appendChild(img);
+      option.appendChild(input);
+      option.appendChild(label);
+
+      option.addEventListener("click", (e) => {
+        handleClick(e, i, option, question);
+      });
+      ul.appendChild(option);
+    }
+
+    h2.textContent = question.question;
+
+    questionUl.appendChild(listquestion);
+    listquestion.appendChild(div);
+    div.appendChild(h2);
+    div.appendChild(ul);
+    div.appendChild(addBtn);
+    div.appendChild(editBtn);
+    div.appendChild(deleteBtn);
+
+    questionIndex++;
+  });
+}
