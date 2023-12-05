@@ -5,11 +5,7 @@ $password = $_POST["password"];
 
 $_SESSION["isLoggedIn"] = false;
 //connect
-$dsn = "mysql:host=localhost;dbname=30-second-match;charset=utf8mb4";
-
-$dbusername = "root";
-$dbpassword = "";
-$pdo = new PDO($dsn, $dbusername, $dbpassword);
+include("./partials/dbconnect.php");
 
 //prepare
 $stmt = $pdo->prepare("SELECT * FROM `users` WHERE `users`.`email` ='$email'  AND `users`.`password` = '$password';");
