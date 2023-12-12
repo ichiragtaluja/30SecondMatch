@@ -389,7 +389,7 @@ function loginHandler(e, i) {
           revealEmail(i);
         }
       } else {
-        console.log(" last here");
+        console.log("last here");
         //status code error
       }
     }

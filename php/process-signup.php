@@ -15,12 +15,18 @@ $today = new DateTime();
 $interval = $today->diff($dob);
 $age = $interval->y;
 
+
+
+
+$_SESSION["isLoggedIn"] = false;
+
 // Connect to the database
 include("./partials/dbconnect.php");
 
 $success = true;
+$stmt = $pdo->prepare("INSERT INTO `users` (`user-id`, `name`, `age`, `personality`, `image`, `email`, `password`, `role`) VALUES (NULL, '$name', '$age', '$personality', '$image', '$email', '$password', '');");
 
-$stmt = $pdo->prepare("INSERT INTO `users` (`user-id`, `name`, `age`, `personality`, `image`, `email`, `password`) VALUES (NULL, '$name', '$age', '$personality', '$image', '$email', '$password');");
+// $stmt = $pdo->prepare("INSERT INTO `users` (`user-id`, `name`, `age`, `personality`, `image`, `email`, `password`,`role`) VALUES (NULL, '$name', '30', '$personality', '$image', '$email', '$password', '');");
 
 $stmt->execute();
 
